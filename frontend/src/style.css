@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@layer base {
+   html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    overflow: hidden;
+  }
+  :root {
+    /* Background & Main Surface (Cream / Warm Off-White) */
+    --background: 250 246 240;      /* #FAF6F0 */
+    --foreground: 25 51 35;         /* #193323 */
+
+    /* Cards & Popovers */
+    --card: 255 255 255;            /* #FFFFFF */
+    --card-foreground: 25 51 35;   /* #193323 */
+    --popover: 255 255 255;         /* #FFFFFF */
+    --popover-foreground: 25 51 35;/* #193323 */
+
+    /* Brand Colors (Primary: Deep Forest Green #234B34) */
+    --primary: 35 75 52;            /* #234B34 */
+    --primary-foreground: 250 246 240; /* #FAF6F0 */
+
+    /* Secondary & Muted Elements (Beige / Warm Sand #E9DDC8) */
+    --secondary: 233 221 200;       /* #E9DDC8 */
+    --secondary-foreground: 35 75 52; /* #234B34 */
+    --muted: 243 236 225;           /* #F3ECE1 */
+    --muted-foreground: 91 107 96;  /* #5B6B60 */
+
+    /* UI Accents & Hover States */
+    --accent: 239 230 216;          /* #EFE6D8 */
+    --accent-foreground: 35 75 52;  /* #234B34 */
+
+    --destructive: 239 68 68;       /* #EF4444 */
+    --destructive-foreground: 255 255 255; /* #FFFFFF */
+
+    --border: 224 213 195;          /* #E0D5C3 */
+    --input: 224 213 195;           /* #E0D5C3 */
+    --ring: 35 75 52;               /* #234B34 */
+
+    /* Charts & Status Badges */
+    --chart-1: 35 75 52;            /* #234B34 */
+    --chart-2: 233 221 200;         /* #E9DDC8 */
+    --chart-3: 16 185 129;          /* #10B981 */
+    --chart-4: 245 158 11;          /* #F59E0B */
+    --chart-5: 239 68 68;           /* #EF4444 */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Mode (Deep Forest & Gold/Cream Accent) */
+    --background: 14 29 20;         /* #0E1D14 */
+    --foreground: 250 246 240;      /* #FAF6F0 */
+    --card: 20 40 28;               /* #14281C */
+    --card-foreground: 250 246 240; /* #FAF6F0 */
+    --popover: 20 40 28;            /* #14281C */
+    --popover-foreground: 250 246 240; /* #FAF6F0 */
+
+    --primary: 233 221 200;         /* #E9DDC8 */
+    --primary-foreground: 14 29 20; /* #0E1D14 */
+
+    --secondary: 28 56 39;          /* #1C3827 */
+    --secondary-foreground: 250 246 240; /* #FAF6F0 */
+    --muted: 28 56 39;              /* #1C3827 */
+    --muted-foreground: 139 155 144;/* #8B9B90 */
+    --accent: 35 75 52;             /* #234B34 */
+    --accent-foreground: 233 221 200; /* #E9DDC8 */
+
+    --destructive: 153 27 27;       /* #991B1B */
+    --destructive-foreground: 250 246 240; /* #FAF6F0 */
+    --border: 35 75 52;             /* #234B34 */
+    --input: 35 75 52;              /* #234B34 */
+    --ring: 233 221 200;            /* #E9DDC8 */
+  }
+
+
+
+  /* body {
+    @apply bg-background text-foreground;
+  } */
+}
