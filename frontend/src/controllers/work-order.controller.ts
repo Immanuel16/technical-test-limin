@@ -33,13 +33,13 @@ export class WorkOrderController extends BaseController {
   public machineries: Ref<IMachinery[]> = ref([]);
   public specGroups: Ref<ISpecificationGroup[]> = ref([]);
 
-  public form: Ref<IWorkOrderForm> = ref(this.getInitialForm());
+  public form: Ref<IWorkOrderForm> = ref(this.getInitialFormState());
 
   constructor(private service: WorkOrderService = new WorkOrderService()) {
     super();
   }
 
-  private getInitialForm(): IWorkOrderForm {
+  private getInitialFormState(): IWorkOrderForm {
     return {
       vessel_id: null,
       machinery_group_id: null,
@@ -57,7 +57,7 @@ export class WorkOrderController extends BaseController {
   }
 
   public openAddModal(): void {
-    this.form.value = this.getInitialForm();
+    this.form.value = this.getInitialFormState();
     this.isAddModalOpen.value = true;
     this.loadLookups();
   }

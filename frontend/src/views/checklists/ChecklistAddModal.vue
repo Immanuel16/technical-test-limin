@@ -31,7 +31,7 @@
               <span class="text-[11px] text-gray-400">Diperlukan</span>
             </div>
             <input
-              v-model="controller.formName.value"
+              v-model="controller.form.value.name"
               type="text"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 outline-none focus:border-sky-500"
             />
@@ -42,7 +42,7 @@
               >Description</label
             >
             <textarea
-              v-model="controller.formDescription.value"
+              v-model="controller.form.value.description"
               rows="2"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 outline-none focus:border-sky-500 resize-none"
             ></textarea>
@@ -53,7 +53,7 @@
             <label class="relative inline-flex items-center cursor-pointer">
               <input
                 type="checkbox"
-                v-model="controller.formIsActive.value"
+                v-model="controller.form.value.is_active"
                 class="sr-only peer"
               />
               <div
@@ -83,7 +83,7 @@
 
             <!-- List dynamic items -->
             <div
-              v-for="(item, index) in controller.formItems.value"
+              v-for="(item, index) in controller.form.value.items"
               :key="index"
               class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3 relative"
             >
@@ -92,7 +92,10 @@
                   index + 1
                 }}</span>
                 <button
-                  v-if="controller.formItems.value.length > 1"
+                  v-if="
+                    controller.form.value.items &&
+                    controller.form.value.items.length > 1
+                  "
                   @click="controller.removeItem(index)"
                   class="text-red-400 hover:text-red-600 text-xs"
                 >

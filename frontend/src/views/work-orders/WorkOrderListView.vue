@@ -41,6 +41,7 @@
       </button>
       <button
         class="bg-[#0284c7] hover:bg-[#0369a1] text-white px-4 py-2 rounded-lg text-sm font-medium"
+        @click="controller.openAddModal"
       >
         + Add
       </button>

@@ -1,11 +1,7 @@
+import { ChecklistService, type IChecklist } from '@/models/checklist';
+import type { ChecklistDataType } from '@/models/types';
 import { ref, type Ref } from 'vue';
 import { BaseController } from './base.controller';
-import {
-  ChecklistService,
-  type IChecklist,
-  type IChecklistItem,
-} from '@/models/checklist';
-import type { ChecklistDataType } from '@/models/types';
 
 export class ChecklistController extends BaseController {
   public checklists: Ref<IChecklist[]> = ref([]);
@@ -14,10 +10,7 @@ export class ChecklistController extends BaseController {
   public isModalOpen: Ref<boolean> = ref(false);
 
   // Form State
-  public formName: Ref<string> = ref('');
-  public formDescription: Ref<string> = ref('');
-  public formIsActive: Ref<boolean> = ref(true);
-  public formItems: Ref<IChecklistItem[]> = ref([]);
+  public form: Ref<IChecklist> = ref(this.getInitialFormState());
 
   public readonly availableDataTypes: ChecklistDataType[] = [
     'Status',
@@ -32,14 +25,23 @@ export class ChecklistController extends BaseController {
     super();
   }
 
+  private getInitialFormState(): IChecklist {
+    return {
+      name: '',
+      description: '',
+      items: [
+        {
+          title: '',
+          data_type: 'Status',
+          sort_order: 1,
+        },
+      ],
+      is_active: true,
+    };
+  }
+
   public openAddModal(): void {
-    this.formName.value = '';
-    this.formDescription.value = '';
-    this.formIsActive.value = true;
-    this.formItems.value = [
-      { title: '', data_type: 'Status', sort_order: 1 },
-      { title: '', data_type: 'Number field', sort_order: 2 },
-    ];
+    this.form.value = this.getInitialFormState();
     this.isModalOpen.value = true;
   }
 
@@ -48,35 +50,37 @@ export class ChecklistController extends BaseController {
   }
 
   public addEmptyItem(): void {
-    this.formItems.value.push({
+    this.form.value.items?.push({
       title: '',
       data_type: 'Status',
-      sort_order: this.formItems.value.length + 1,
+      sort_order: this.form.value.items?.length + 1,
     });
   }
 
   public removeItem(index: number): void {
-    this.formItems.value.splice(index, 1);
-    this.formItems.value.forEach((item, idx) => {
-      item.sort_order = idx + 1;
-    });
+    if (this.form.value.items) {
+      this.form.value.items.splice(index, 1);
+      this.form.value.items.forEach((item, idx) => {
+        item.sort_order = idx + 1;
+      });
+    }
   }
 
   public async submitForm(): Promise<boolean> {
-    if (!this.formName.value.trim()) {
+    if (!this.form.value.name.trim()) {
       alert('Checklist Name is required');
       return false;
     }
-    if (this.formItems.value.length === 0) {
+    if (this.form.value.items?.length === 0) {
       alert('Minimum one item required');
       return false;
     }
 
     const payload: IChecklist = {
-      name: this.formName.value.trim(),
-      description: this.formDescription.value.trim() || null,
-      is_active: this.formIsActive.value,
-      items: this.formItems.value,
+      name: this.form.value.name.trim(),
+      description: this.form.value.description?.trim() || null,
+      is_active: this.form.value.is_active,
+      items: this.form.value.items,
     };
 
     const result = await this.executeAsync(async () => {

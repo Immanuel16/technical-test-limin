@@ -10,7 +10,7 @@
           class="px-4 py-2 border rounded-lg text-sm bg-gray-50 w-64 outline-none border-gray-300"
         />
         <button
-          @click="$router.push('/checklists/new')"
+          @click="controller.openAddModal"
           class="bg-[#0284c7] hover:bg-[#0369a1] text-white px-4 py-2 rounded-lg text-sm font-medium"
         >
           + Add
